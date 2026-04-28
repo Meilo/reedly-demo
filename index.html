@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reedly — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="deck-stage.js"></script>
+<style>
+  :root {
+    --bg:       #0b1220;
+    --bg2:      #131d30;
+    --bg3:      #1a2640;
+    --green:    #16a34a;
+    --g-bright: #22c55e;
+    --g-light:  #4ade80;
+    --g-muted:  rgba(34,197,94,0.10);
+    --g-border: rgba(34,197,94,0.22);
+    --text:     #f8fafc;
+    --muted:    #94a3b8;
+    --dim:      #64748b;
+    --border:   #1e293b;
+    --red:      #ef4444;
+    --r-muted:  rgba(239,68,68,0.10);
+    --r-border: rgba(239,68,68,0.28);
+    --amber:    #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; background: #000; }
+
+  /* ── Grid background ── */
+  section {
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    position: relative;
+  }
+  section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(34,197,94,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,197,94,0.055) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 30%, transparent 100%);
+    pointer-events: none; z-index: 0;
+  }
+  section > * { position: relative; z-index: 1; }
+
+  .glow {
+    position: absolute; border-radius: 50%;
+    background: var(--green); opacity: .12;
+    filter: blur(130px); pointer-events: none; z-index: 0;
+  }
+
+  /* ── Shared layout ── */
+  .si {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    padding: 76px 100px 72px;
+  }
+
+  /* ── Typography scale ── */
+  .eyebrow {
+    font-size: 24px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--g-bright); margin-bottom: 24px;
+  }
+  .t64 { font-size: 64px; font-weight: 800; line-height: 1.05; letter-spacing: -.025em; margin-bottom: 52px; }
+  .t60 { font-size: 60px; font-weight: 800; line-height: 1.05; letter-spacing: -.025em; margin-bottom: 44px; }
+  .t52 { font-size: 52px; font-weight: 700; line-height: 1.1;  letter-spacing: -.02em;  }
+  .t32 { font-size: 32px; font-weight: 400; line-height: 1.5;  color: var(--muted); }
+  .t28 { font-size: 28px; font-weight: 400; line-height: 1.5;  color: var(--muted); }
+  .t26 { font-size: 26px; line-height: 1.45; }
+  .t24 { font-size: 24px; line-height: 1.45; }
+  .mono { font-family: 'Geist Mono', monospace; }
+
+  .green  { color: var(--g-bright); }
+  .muted  { color: var(--muted); }
+  .dim    { color: var(--dim); }
+
+  /* ── Cards ── */
+  .card      { background: var(--bg2); border: 1px solid var(--border);  border-radius: 16px; padding: 36px; }
+  .card-g    { background: var(--g-muted); border: 1px solid var(--g-border); border-radius: 16px; padding: 36px; }
+  .card-r    { background: var(--r-muted); border: 1px solid var(--r-border); border-radius: 16px; padding: 36px; }
+
+  /* ── Check / X ── */
+  .ic {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+    font-size: 24px; font-weight: 700;
+  }
+  .ic-g { background: var(--g-muted); color: var(--g-bright); }
+  .ic-r { background: var(--r-muted); color: #fca5a5; }
+
+  /* ── Numbered badge ── */
+  .nbadge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--g-muted); border: 1px solid var(--g-border);
+    font-size: 24px; font-weight: 700; color: var(--g-bright);
+    font-family: 'Geist Mono', monospace; flex-shrink: 0;
+  }
+
+  /* ── Dot marker ── */
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 9px; }
+
+  /* ── Inline SVG icons ── */
+  .svg-icon { flex-shrink: 0; }
+
+  /* ════════════════════════════════════════
+     SLIDE 1 — COVER
+  ════════════════════════════════════════ */
+  #s1 .glow { width: 900px; height: 900px; top: -250px; right: -250px; }
+  #s1 .inner {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    padding: 76px 100px;
+  }
+  #s1 .topbar { display: flex; align-items: center; gap: 18px; }
+  #s1 .logo { height: 60px; }
+  #s1 .wordmark { font-size: 42px; font-weight: 800; letter-spacing: -.025em; }
+  #s1 .hero { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 36px; }
+  #s1 .headline {
+    font-size: 86px; font-weight: 900; line-height: 1.0;
+    letter-spacing: -.035em; max-width: 1200px;
+  }
+  #s1 .headline em { font-style: normal; color: var(--g-bright); }
+  #s1 .sub { font-size: 34px; color: var(--muted); max-width: 820px; line-height: 1.5; }
+  #s1 .pill-row { display: flex; gap: 20px; flex-wrap: wrap; }
+  #s1 .pill {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--g-muted); border: 1px solid var(--g-border);
+    border-radius: 100px; padding: 10px 24px;
+    font-size: 26px; font-weight: 600; color: var(--g-light);
+  }
+  #s1 .bottombar { display: flex; align-items: center; justify-content: space-between; }
+  #s1 .mono-label { font-size: 24px; color: var(--dim); font-family: 'Geist Mono', monospace; }
+  #s1 .badge {
+    background: var(--green); color: #fff;
+    font-size: 24px; font-weight: 700;
+    padding: 14px 40px; border-radius: 100px;
+  }
+
+  /* ════════════════════════════════════════
+     SLIDE 2 — VIE SANS REEDLY
+  ════════════════════════════════════════ */
+  #s2 .glow { width: 500px; height: 500px; bottom: -100px; left: -80px; background: var(--red); opacity: .07; }
+  #s2 .pain-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px; flex: 1;
+  }
+  #s2 .pain-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  #s2 .pain-num {
+    font-size: 24px; font-weight: 700; color: var(--dim);
+    font-family: 'Geist Mono', monospace; letter-spacing: .06em;
+  }
+  #s2 .pain-title { font-size: 28px; font-weight: 700; line-height: 1.2; }
+  #s2 .pain-desc { font-size: 24px; color: var(--muted); line-height: 1.5; }
+
+  /* ════════════════════════════════════════
+     SLIDE 3 — OUTILS
+  ════════════════════════════════════════ */
+  #s3 .tools-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px; flex: 1;
+  }
+  #s3 .col-label {
+    font-size: 26px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 1px solid;
+  }
+  #s3 .col-label.bad   { color: #fca5a5; border-color: var(--r-border); }
+  #s3 .col-label.good  { color: var(--g-light); border-color: var(--g-border); }
+  #s3 .tool-row {
+    display: flex; align-items: center; gap: 18px;
+    padding: 20px 24px; border-radius: 12px;
+    margin-bottom: 14px; font-size: 28px; font-weight: 500;
+  }
+  #s3 .tool-row.bad  { background: var(--r-muted); border: 1px solid var(--r-border); color: #fca5a5; }
+  #s3 .tool-row.good { background: var(--g-muted); border: 1px solid var(--g-border); color: var(--g-light); }
+
+  /* ════════════════════════════════════════
+     SLIDE 4 — COÛT INVISIBLE
+  ════════════════════════════════════════ */
+  #s4 .glow { width: 900px; height: 900px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  #s4 .si { align-items: center; justify-content: center; text-align: center; gap: 28px; }
+  #s4 .n-row { display: flex; align-items: baseline; gap: 14px; justify-content: center; }
+  #s4 .bnum  { font-size: 220px; font-weight: 900; letter-spacing: -.06em; line-height: 1; color: var(--g-bright); }
+  #s4 .bunit { font-size: 72px; font-weight: 700; color: var(--muted); }
+  #s4 .label-big { font-size: 52px; font-weight: 700; letter-spacing: -.015em; }
+  #s4 .stats { display: flex; gap: 72px; margin-top: 16px; }
+  #s4 .stat { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  #s4 .sn { font-size: 52px; font-weight: 800; letter-spacing: -.02em; }
+  #s4 .sl { font-size: 24px; color: var(--dim); }
+
+  /* ════════════════════════════════════════
+     SLIDE 5 — AVANT / APRÈS
+  ════════════════════════════════════════ */
+  #s5 .cmp-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px; flex: 1;
+  }
+  #s5 .col-hd {
+    font-size: 26px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    margin-bottom: 24px; padding-bottom: 18px;
+    border-bottom: 2px solid;
+  }
+  #s5 .col-hd.before { color: #fca5a5; border-color: var(--r-border); }
+  #s5 .col-hd.after  { color: var(--g-light); border-color: var(--g-border); }
+  #s5 .ci { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 22px; font-size: 26px; line-height: 1.4; }
+  #s5 .ci .ico { margin-top: 3px; }
+  #s5 .tb { color: #fca5a5; }
+  #s5 .tg { color: var(--text); }
+
+  /* ════════════════════════════════════════
+     SLIDE 6 — ENREGISTREMENT
+  ════════════════════════════════════════ */
+  #s6 .si {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    padding: 76px 100px;
+  }
+  #s6 .left  { display: flex; flex-direction: column; gap: 32px; }
+  #s6 .right { display: flex; align-items: center; justify-content: center; }
+  .fnum  { font-size: 24px; color: var(--g-bright); font-family: 'Geist Mono', monospace; letter-spacing: .1em; }
+  .flist { display: flex; flex-direction: column; gap: 18px; }
+  .fitem { display: flex; align-items: center; gap: 16px; font-size: 27px; }
+  #s6 .phone {
+    width: 320px; height: 570px;
+    background: var(--bg2); border: 2px solid var(--border);
+    border-radius: 40px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 28px;
+    position: relative; overflow: hidden;
+  }
+  #s6 .phone::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(34,197,94,.12) 0%, transparent 65%);
+  }
+  #s6 .rec-btn {
+    width: 116px; height: 116px; border-radius: 50%;
+    background: var(--green); display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px rgba(22,163,74,.55), 0 0 80px rgba(22,163,74,.25);
+    position: relative; z-index: 1;
+  }
+  #s6 .rec-btn::after {
+    content: ''; position: absolute;
+    width: 148px; height: 148px; border-radius: 50%;
+    border: 2px solid rgba(34,197,94,.3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.15);opacity:.15} }
+  #s6 .rec-status { font-size: 24px; font-weight: 600; color: var(--g-bright); z-index: 1; font-family: 'Geist Mono', monospace; }
+  #s6 .wave { display: flex; align-items: center; gap: 5px; z-index: 1; }
+  #s6 .wb { width: 5px; background: var(--green); border-radius: 3px; animation: wv 1.2s ease-in-out infinite; }
+  @keyframes wv { 0%,100%{height:10px} 50%{height:var(--h,36px)} }
+
+  /* ════════════════════════════════════════
+     SLIDE 7 — COMPTE-RENDU
+  ════════════════════════════════════════ */
+  #s7 .si {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    padding: 76px 100px;
+  }
+  #s7 .left  { display: flex; flex-direction: column; gap: 32px; }
+  #s7 .right { display: flex; flex-direction: column; gap: 14px; }
+  #s7 .rc {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 28px;
+  }
+  #s7 .rc.hl { background: var(--g-muted); border-color: var(--g-border); }
+  #s7 .rl {
+    font-size: 24px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--g-bright); margin-bottom: 12px;
+  }
+  #s7 .rb { display: flex; align-items: flex-start; gap: 12px; font-size: 24px; color: var(--muted); line-height: 1.4; margin-bottom: 8px; }
+  #s7 .rb:last-child { margin-bottom: 0; }
+  #s7 .tbadge {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 100px; padding: 12px 26px;
+    font-size: 24px; color: var(--muted); width: fit-content;
+  }
+  #s7 .tbadge strong { color: var(--g-bright); }
+
+  /* ════════════════════════════════════════
+     SLIDE 8 — SYNTHÈSE
+  ════════════════════════════════════════ */
+  #s8 .si { padding: 60px 100px 60px; }
+  #s8 .hdr { margin-bottom: 36px; }
+  #s8 .syn-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 22px; flex: 1;
+  }
+  #s8 .sc {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px 28px;
+    display: flex; flex-direction: column; gap: 12px;
+    position: relative; overflow: hidden;
+  }
+  #s8 .sc.ft { background: var(--g-muted); border-color: var(--g-border); }
+  #s8 .sc::before { content: ''; position: absolute; top:0; left:0; right:0; height:3px; background: var(--green); border-radius: 14px 14px 0 0; }
+  #s8 .sc-n  { font-size: 24px; font-weight: 700; color: var(--dim); font-family: 'Geist Mono', monospace; }
+  #s8 .sc-t  { font-size: 28px; font-weight: 700; line-height: 1.2; }
+  #s8 .sc-d  { font-size: 24px; color: var(--muted); line-height: 1.45; }
+  #s8 .sc-tag { font-size: 24px; font-weight: 600; color: var(--g-bright); padding: 6px 14px; background: rgba(34,197,94,.1); border-radius: 100px; width: fit-content; }
+
+  /* ════════════════════════════════════════
+     SLIDE 9 — MAX
+  ════════════════════════════════════════ */
+  #s9 { background: linear-gradient(135deg, #0b1220 0%, #0d1f15 100%); }
+  #s9 .glow { width: 700px; height: 700px; top: -100px; right: -100px; opacity: .12; }
+  #s9 .si {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    padding: 76px 100px;
+  }
+  #s9 .left  { display: flex; flex-direction: column; gap: 32px; }
+  #s9 .right { display: flex; flex-direction: column; gap: 18px; }
+  #s9 .max-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    padding: 12px 28px; border-radius: 100px;
+    font-size: 24px; font-weight: 700; color: #fff;
+    letter-spacing: .05em; width: fit-content;
+  }
+  #s9 .mf { display: flex; flex-direction: column; gap: 16px; }
+  #s9 .mfi { display: flex; align-items: center; gap: 16px; font-size: 27px; }
+  #s9 .cb { border-radius: 16px; padding: 22px 26px; font-size: 26px; line-height: 1.5; }
+  #s9 .cu { background: var(--bg3); border: 1px solid var(--border); color: var(--muted); border-radius: 16px 16px 4px 16px; margin-left: 50px; }
+  #s9 .cm { background: var(--g-muted); border: 1px solid var(--g-border); color: var(--text); border-radius: 4px 16px 16px 16px; margin-right: 50px; }
+  #s9 .cl { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  #s9 .cu .cl { color: var(--dim); }
+  #s9 .cm .cl { color: var(--g-bright); }
+
+  /* ════════════════════════════════════════
+     SLIDE 10 — CRM
+  ════════════════════════════════════════ */
+  #s11 .crm-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; flex: 1; align-items: center;
+  }
+  #s11 .crm-pts { display: flex; flex-direction: column; gap: 24px; }
+  #s11 .cp { display: flex; align-items: flex-start; gap: 18px; font-size: 28px; line-height: 1.4; }
+  #s11 .highlight-box {
+    background: var(--g-muted); border: 1px solid var(--g-border);
+    border-radius: 14px; padding: 24px 28px;
+    margin-top: 8px;
+  }
+  #s11 .crm-flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  #s11 .cn {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 28px;
+    font-size: 26px; font-weight: 600; width: 100%; text-align: center;
+  }
+  #s11 .cn.ctr {
+    background: var(--g-muted); border-color: var(--g-border);
+    color: var(--g-bright); font-size: 30px; font-weight: 800; padding: 24px 28px;
+  }
+  #s11 .ca { font-size: 28px; color: var(--dim); margin: 8px 0; }
+  #s11 .cn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
+  #s11 .cn-small {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px;
+    font-size: 24px; font-weight: 500; text-align: center;
+  }
+
+  /* ════════════════════════════════════════
+     SLIDE 11 — TARIFS (enterprise only)
+  ════════════════════════════════════════ */
+  #s13 .si { padding: 60px 100px 60px; }
+  #s12 .hdr { margin-bottom: 32px; }
+  #s12 .pricing-layout {
+    display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: 48px; flex: 1; align-items: start;
+  }
+  #s12 .price-hero {
+    background: var(--g-muted); border: 2px solid var(--g-border);
+    border-radius: 20px; padding: 48px;
+    display: flex; flex-direction: column; gap: 24px; height: 100%;
+  }
+  #s12 .plan-name {
+    font-size: 26px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  #s12 .price-row { display: flex; align-items: baseline; gap: 8px; }
+  #s12 .pnum { font-size: 96px; font-weight: 900; letter-spacing: -.05em; line-height: 1; }
+  #s12 .punit { font-size: 28px; color: var(--muted); }
+  #s12 .price-note { font-size: 24px; color: var(--muted); line-height: 1.5; }
+  #s12 .annual-row {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(34,197,94,.08); border: 1px solid var(--g-border);
+    border-radius: 10px; padding: 14px 20px;
+  }
+  #s12 .ann-num { font-size: 28px; font-weight: 800; color: var(--g-bright); }
+  #s12 .ann-label { font-size: 24px; color: var(--muted); }
+  #s12 .features-col { display: flex; flex-direction: column; gap: 0; }
+  #s12 .feat-section-label {
+    font-size: 24px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--g-bright);
+    margin-bottom: 14px; margin-top: 20px;
+  }
+  #s12 .feat-section-label:first-child { margin-top: 0; }
+  #s12 .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; margin-bottom: 4px; }
+  #s12 .fi { display: flex; align-items: center; gap: 12px; font-size: 26px; }
+  #s12 .fi .ic { width: 28px; height: 28px; font-size: 24px; }
+
+  /* ════════════════════════════════════════
+     SLIDE 12 — CTA
+  ════════════════════════════════════════ */
+  #s13 .glow { width: 1000px; height: 1000px; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: .09; }
+  #s13 .si { align-items: center; justify-content: center; text-align: center; gap: 44px; }
+  #s13 .logo-row { display: flex; align-items: center; gap: 20px; justify-content: center; }
+  #s13 .logo-row img { height: 76px; }
+  #s13 .logo-row span { font-size: 50px; font-weight: 800; letter-spacing: -.025em; }
+  #s13 .cta-h { font-size: 76px; font-weight: 900; letter-spacing: -.035em; line-height: 1.04; max-width: 1100px; }
+  #s13 .cta-h em { font-style: normal; color: var(--g-bright); }
+  #s13 .cta-s { font-size: 32px; color: var(--muted); max-width: 720px; }
+  #s13 .contact-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px 56px;
+    display: flex; gap: 56px; align-items: center;
+  }
+  #s13 .contact-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  #s13 .ci-label { font-size: 24px; color: var(--dim); letter-spacing: .06em; text-transform: uppercase; font-family: 'Geist Mono', monospace; }
+  #s13 .ci-value { font-size: 30px; font-weight: 600; color: var(--text); }
+  #s13 .sep { width: 1px; height: 60px; background: var(--border); }
+  #s13 .trial-pill {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--g-muted); border: 1px solid var(--g-border);
+    border-radius: 100px; padding: 14px 36px;
+    font-size: 28px; font-weight: 600; color: var(--g-light);
+  }
+
+  /* ════════════════════ ANIMATIONS ════════════════════ */
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeLeft { from{opacity:0;transform:translateX(-36px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes fadeRight{ from{opacity:0;transform:translateX(36px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes scaleIn  { from{opacity:0;transform:scale(0.72)} to{opacity:1;transform:scale(1)} }
+  @keyframes lineGrow { from{transform:scaleX(0);opacity:0} to{transform:scaleX(1);opacity:1} }
+
+  /* Elements start invisible */
+  .au,.al,.ar,.as { opacity:0; }
+
+  /* Triggered when slide gets .anim-in */
+  section.anim-in .au { animation:fadeUp  0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay:var(--ad,0ms); }
+  section.anim-in .al { animation:fadeLeft 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay:var(--ad,0ms); }
+  section.anim-in .ar { animation:fadeRight 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay:var(--ad,0ms); }
+  section.anim-in .as { animation:scaleIn  0.65s cubic-bezier(0.16,1,0.3,1) both; animation-delay:var(--ad,0ms); }
+
+  /* Auto-staggered grid/list items */
+  .pain-card,.sc,.tool-row,.ci,.fitem,.mfi,.cp,.fi,.rc,.cb,.stat,.contact-item,.crm-row { opacity:0; }
+  section.anim-in .pain-card,
+  section.anim-in .sc,
+  section.anim-in .tool-row,
+  section.anim-in .ci,
+  section.anim-in .fitem,
+  section.anim-in .mfi,
+  section.anim-in .cp,
+  section.anim-in .fi,
+  section.anim-in .rc,
+  section.anim-in .cb,
+  section.anim-in .stat,
+  section.anim-in .contact-item,
+  section.anim-in .crm-row {
+    animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
+    animation-delay:var(--sd,0ms);
+  }
+
+  /* Big number special */
+  .bnum { opacity:0; }
+  section.anim-in .bnum { animation:scaleIn 0.7s cubic-bezier(0.16,1,0.3,1) both; animation-delay:var(--ad,120ms); }
+
+  /* Glow on active slide */
+  section.anim-in .glow { animation:fadeIn 1.2s ease both; animation-delay:50ms; }
+  @keyframes fadeIn { from{opacity:0} to{opacity:.12} }
+
+
+  /* ── iPhone mockup ── */
+  .iphone-wrap { display:flex; align-items:center; justify-content:center; }
+  .iphone-bezel {
+    width: 310px; height: 650px;
+    background: #161618;
+    border-radius: 52px;
+    border: 2px solid #3a3a3c;
+    box-shadow:
+      0 0 0 1px #222224,
+      0 40px 100px rgba(0,0,0,0.75),
+      inset 0 0 0 1px #3a3a3c;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  /* Volume buttons */
+  .iphone-btn-vol-up, .iphone-btn-vol-dn {
+    position: absolute; left: -4px;
+    width: 4px; background: #2c2c2e; border-radius: 2px 0 0 2px;
+  }
+  .iphone-btn-vol-up  { top: 130px; height: 56px; }
+  .iphone-btn-vol-dn  { top: 206px; height: 56px; }
+  /* Power button */
+  .iphone-btn-power {
+    position: absolute; right: -4px; top: 170px;
+    width: 4px; height: 80px; background: #2c2c2e; border-radius: 0 2px 2px 0;
+  }
+  /* Inner screen area */
+  .iphone-screen-area {
+    flex: 1; border-radius: 42px; overflow: hidden;
+    background: #0b1220;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  /* Dynamic Island */
+  .iphone-notch {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 32px;
+    background: #000; border-radius: 20px;
+    z-index: 10;
+  }
+  /* Screenshot fills screen */
+  .iphone-screenshot {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top;
+    display: block;
+  }
+  /* Home indicator */
+  .iphone-home-bar {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 5px;
+    background: rgba(255,255,255,0.28); border-radius: 3px;
+    z-index: 10;
+  }
+
+
+  /* ── Slide DEMO ── */
+  #sdemo {
+    background: linear-gradient(160deg, #0b1220 0%, #0d1f15 60%, #0b1220 100%);
+  }
+  #sdemo .glow-demo { position:absolute; border-radius:50%; filter:blur(140px); pointer-events:none; z-index:0; }
+  #sdemo .glow-demo.g1 { width:700px; height:700px; top:-200px; right:-100px; background:var(--green); opacity:.09; }
+  #sdemo .glow-demo.g2 { width:500px; height:500px; bottom:-100px; left:0; background:var(--green); opacity:.06; }
+  #sdemo .demo-inner {
+    width:100%; height:100%;
+    display:flex; flex-direction:column;
+    padding:76px 100px; position:relative; z-index:1;
+  }
+  #sdemo .demo-live-badge {
+    display:inline-flex; align-items:center; gap:12px;
+    background:var(--g-muted); border:1px solid var(--g-border);
+    border-radius:100px; padding:10px 28px;
+    font-size:24px; font-weight:700; color:var(--g-bright);
+    letter-spacing:.06em; text-transform:uppercase;
+    width:fit-content; margin-bottom:28px;
+  }
+  #sdemo .demo-live-dot {
+    width:10px; height:10px; border-radius:50%;
+    background:var(--g-bright);
+    animation: livepulse 1.4s ease-in-out infinite;
+  }
+  @keyframes livepulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+  #sdemo .demo-headline { font-size:72px; font-weight:900; letter-spacing:-.035em; line-height:1.05; margin-bottom:52px; }
+  #sdemo .demo-grid {
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; flex:1;
+  }
+  #sdemo .demo-card {
+    background:var(--bg2); border:1px solid var(--border); border-radius:20px;
+    padding:40px 36px; display:flex; flex-direction:column; gap:20px;
+    position:relative; overflow:hidden;
+  }
+  #sdemo .demo-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--green); border-radius:20px 20px 0 0; }
+  #sdemo .demo-card.featured { background:var(--g-muted); border-color:var(--g-border); }
+  #sdemo .dc-num { font-size:24px; font-weight:700; color:var(--dim); font-family:'Geist Mono',monospace; letter-spacing:.06em; }
+  #sdemo .dc-title { font-size:32px; font-weight:800; line-height:1.15; }
+  #sdemo .dc-desc { font-size:24px; color:var(--muted); line-height:1.5; flex:1; }
+  #sdemo .dc-items { display:flex; flex-direction:column; gap:12px; }
+  #sdemo .dc-item { display:flex; align-items:center; gap:12px; font-size:24px; color:var(--text); }
+
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+  <!-- ══ SLIDE 1 — COVER ══ -->
+  <section id="s1" data-screen-label="01 Cover">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="topbar au" style="--ad:0ms">
+        <img class="logo" src="logo2.png" alt="Reedly">
+        <span class="wordmark">Reedly</span>
+      </div>
+      <div class="hero">
+        <h1 class="headline au" style="--ad:60ms">
+          L'assistant IA<br>du commercial terrain.
+        </h1>
+        <p class="sub au" style="--ad:180ms">Enregistrez vos visites, obtenez des comptes-rendus experts, pilotez votre portefeuille — tout depuis votre mobile.</p>
+        <div class="pill-row au" style="--ad:260ms">
+          <div class="pill">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            20h récupérées / mois
+          </div>
+          <div class="pill">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 13.6 19.79 19.79 0 0 1 1.58 5 2 2 0 0 1 3.58 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Comptes-rendus en 30 s
+          </div>
+          <div class="pill">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Synthèses stratégiques IA
+          </div>
+        </div>
+      </div>
+      <div class="bottombar au" style="--ad:360ms">
+        <span class="mono-label">reedly.ia · 2026</span>
+        <span class="badge">Présentation commerciale</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 2 — SANS REEDLY ══ -->
+  <section id="s2" data-screen-label="02 Sans Reedly">
+    <div class="glow"></div>
+    <div class="si">
+      <p class="eyebrow au" style="--ad:0ms">La réalité terrain</p>
+      <h2 class="t64 au" style="--ad:80ms;margin-bottom:60px;">La journée sans Reedly</h2>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <span class="pain-num">01</span>
+          <p class="pain-title">Notes prises à la volée</p>
+          <p class="pain-desc">Carnet, mémos vocaux non structurés — illisibles deux heures après la visite.</p>
+        </div>
+        <div class="pain-card">
+          <span class="pain-num">02</span>
+          <p class="pain-title">1h de compte-rendu chaque soir</p>
+          <p class="pain-desc">Reconstituer de mémoire ce qui a été dit. Souvent incomplet, souvent le soir.</p>
+        </div>
+        <div class="pain-card">
+          <span class="pain-num">03</span>
+          <p class="pain-title">CRM rarement mis à jour</p>
+          <p class="pain-desc">La saisie manuelle est la tâche la plus détestée. Pipeline bancal, données obsolètes.</p>
+        </div>
+        <div class="pain-card">
+          <span class="pain-num">04</span>
+          <p class="pain-title">Aucune vision globale</p>
+          <p class="pain-desc">Impossible de détecter les tendances sur 30 visites. Chaque réunion reste un silo.</p>
+        </div>
+        <div class="pain-card">
+          <span class="pain-num">05</span>
+          <p class="pain-title">Les mêmes erreurs répétées</p>
+          <p class="pain-desc">Sans analyse structurée, les objections récurrentes ne sont pas identifiées.</p>
+        </div>
+        <div class="pain-card">
+          <span class="pain-num">06</span>
+          <p class="pain-title">Reporting direction chronophage</p>
+          <p class="pain-desc">Synthétiser un mois de visites à la main pour le manager prend des heures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 3 — OUTILS ══ -->
+  <section id="s3" data-screen-label="03 Outils">
+    <div class="si">
+      <p class="eyebrow au" style="--ad:0ms">L'environnement du commercial</p>
+      <h2 class="t64 au" style="--ad:80ms;margin-bottom:44px">Ce qu'il utilise — et ce qu'il veut</h2>
+      <div class="tools-grid">
+        <div>
+          <p class="col-label bad">Outils inadaptés au terrain</p>
+          <div class="tool-row bad">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Carnet / notes papier
+          </div>
+          <div class="tool-row bad">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            Mémos vocaux non structurés
+          </div>
+          <div class="tool-row bad">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Enregistreur basique
+          </div>
+          <div class="tool-row bad">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email à soi-même « à traiter »
+          </div>
+          <div class="tool-row bad">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            CRM saisi après coup, au bureau
+          </div>
+        </div>
+        <div>
+          <p class="col-label good">Ce qu'il veut vraiment</p>
+          <div class="tool-row good">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Capturer l'échange en temps réel
+          </div>
+          <div class="tool-row good">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Compte-rendu automatique et structuré
+          </div>
+          <div class="tool-row good">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            Analyse des besoins client
+          </div>
+          <div class="tool-row good">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Vision cross-visites en 1 clic
+          </div>
+          <div class="tool-row good">
+            <svg class="svg-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Synchronisation CRM automatique
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 4 — COÛT INVISIBLE ══ -->
+  <section id="s4" data-screen-label="04 Cout invisible">
+    <div class="glow"></div>
+    <div class="si">
+      <p class="eyebrow au" style="--ad:0ms">Le coût invisible</p>
+      <div class="n-row au" style="--ad:60ms">
+        <span class="bnum">20</span>
+        <span class="bunit">h / mois</span>
+      </div>
+      <p class="label-big au" style="--ad:220ms">perdues en comptes-rendus manuels</p>
+      <p class="t32 au" style="max-width:900px;--ad:320ms">À raison d'1h par visite, 5 visites/jour, 20 jours par mois — c'est une demi-semaine de travail qui disparaît chaque mois.</p>
+      <div class="stats au" style="--ad:420ms">
+        <div class="stat">
+          <span class="sn">5×</span>
+          <span class="sl">visites par jour en moyenne</span>
+        </div>
+        <div class="stat">
+          <span class="sn" style="color:var(--text);">≈ 1 h</span>
+          <span class="sl">de compte-rendu par visite</span>
+        </div>
+        <div class="stat">
+          <span class="sn" style="color:#fca5a5;">– € € €</span>
+          <span class="sl">de productivité chaque mois</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 5 — AVANT / APRÈS ══ -->
+  <section id="s5" data-screen-label="05 Avant Après">
+    <div class="si">
+      <p class="eyebrow au" style="--ad:0ms">La différence</p>
+      <h2 class="t64 au" style="--ad:80ms;margin-bottom:40px">La même journée, deux réalités</h2>
+      <div class="cmp-grid">
+        <div>
+          <p class="col-hd before au" style="--ad:120ms">Sans Reedly</p>
+          <div class="ci"><div class="ico ic ic-r">✕</div><span class="tb">Visite terminée → 45 min de reconstitution de mémoire</span></div>
+          <div class="ci"><div class="ico ic ic-r">✕</div><span class="tb">Compte-rendu incomplet, rédigé le soir fatigué</span></div>
+          <div class="ci"><div class="ico ic ic-r">✕</div><span class="tb">CRM mis à jour 3 jours après la visite (si mis à jour)</span></div>
+          <div class="ci"><div class="ico ic ic-r">✕</div><span class="tb">Aucune vision sur les objections récurrentes</span></div>
+          <div class="ci"><div class="ico ic ic-r">✕</div><span class="tb">Reporting mensuel : 3h de compilation manuelle</span></div>
+        </div>
+        <div>
+          <p class="col-hd after au" style="--ad:120ms">Avec Reedly</p>
+          <div class="ci"><div class="ico ic ic-g">✓</div><span class="tg">Visite terminée → compte-rendu structuré en 30 secondes</span></div>
+          <div class="ci"><div class="ico ic ic-g">✓</div><span class="tg">Rapport expert par secteur, prêt à partager</span></div>
+          <div class="ci"><div class="ico ic ic-g">✓</div><span class="tg">CRM synchronisé automatiquement après chaque visite</span></div>
+          <div class="ci"><div class="ico ic ic-g">✓</div><span class="tg">Synthèse IA : tendances, opportunités, risques détectés</span></div>
+          <div class="ci"><div class="ico ic ic-g">✓</div><span class="tg">Rapport de direction généré en 1 clic</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 6 — ENREGISTREMENT ══ -->
+  <section id="s6" data-split="1" data-screen-label="06 Enregistrement">
+    <div class="si">
+      <div class="left">
+        <p class="fnum">01 / FONCTIONNALITÉ</p>
+        <h2 class="t60 au" style="--ad:80ms">Enregistrement<br>d'un échange</h2>
+        <p class="t28">Un seul bouton. Reedly capture la totalité de la conversation et identifie automatiquement qui parle — commercial ou client.</p>
+        <div class="flist">
+          <div class="fitem"><div class="ic ic-g">✓</div><span>Fonctionne hors connexion — sync automatique</span></div>
+          <div class="fitem"><div class="ic ic-g">✓</div><span>Diarisation : identification commercial / client</span></div>
+          <div class="fitem"><div class="ic ic-g">✓</div><span>Transcription haute précision en français</span></div>
+          <div class="fitem"><div class="ic ic-g">✓</div><span>Durée max 2h par session</span></div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="iphone-wrap ar" style="--ad:200ms">
+          <div class="iphone-bezel">
+            <div class="iphone-btn-vol-up"></div>
+            <div class="iphone-btn-vol-dn"></div>
+            <div class="iphone-btn-power"></div>
+            <div class="iphone-screen-area">
+              <div class="iphone-notch"></div>
+              <img src="recording.png" alt="Reedly enregistrement" class="iphone-screenshot">
+              <div class="iphone-home-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 7 — COMPTE-RENDU ══ -->
+  <section id="s7" data-split="1" data-screen-label="07 Compte-rendu">
+    <div class="si">
+      <div class="left">
+        <p class="fnum">02 / FONCTIONNALITÉ</p>
+        <h2 class="t60 au" style="--ad:80ms">Génération de<br>compte-rendu</h2>
+        <p class="t28">En quelques secondes, Reedly produit un rapport structuré adapté à votre secteur — besoins client, objections, prochaines étapes.</p>
+        <div class="flist">
+          <div class="fitem"><div class="ic ic-g">✓</div><span>Structure expert par secteur d'activité</span></div>
+          <div class="fitem"><div class="ic ic-g">✓</div><span>Attribution précise : qui a dit quoi</span></div>
+          <div class="fitem"><div class="ic ic-g">✓</div><span>Prêt à partager en 1 tap</span></div>
+        </div>
+        <div class="tbadge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Délai moyen : <strong>&lt; 30 secondes</strong>
+        </div>
+      </div>
+      <div class="right">
+        <div class="rc hl">
+          <p class="rl">Besoins exprimés (Client)</p>
+          <div class="rb"><div class="dot"></div><span>Améliorer le suivi post-visite de l'équipe terrain</span></div>
+          <div class="rb"><div class="dot"></div><span>Réduire le temps de saisie CRM</span></div>
+          <div class="rb"><div class="dot"></div><span>Disposer d'un reporting hebdomadaire automatisé</span></div>
+        </div>
+        <div class="rc">
+          <p class="rl">Objections identifiées</p>
+          <div class="rb"><div class="dot"></div><span>Prix perçu comme élevé vs outils internes existants</span></div>
+          <div class="rb"><div class="dot"></div><span>Besoin de validation DSI pour l'intégration CRM</span></div>
+        </div>
+        <div class="rc">
+          <p class="rl">Prochaines étapes</p>
+          <div class="rb"><div class="dot"></div><span>Envoyer démo personnalisée d'ici J+3</span></div>
+          <div class="rb"><div class="dot"></div><span>Planifier call technique avec DSI — semaine prochaine</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 8 — SYNTHÈSE ══ -->
+  <section id="s8" data-screen-label="08 Synthèse">
+    <div class="si">
+      <div class="hdr">
+        <p class="eyebrow au" style="--ad:0ms">03 / Fonctionnalité</p>
+        <h2 class="t64 au" style="--ad:80ms">Génération de synthèse stratégique</h2>
+      </div>
+      <div class="syn-grid">
+        <div class="sc ft">
+          <span class="sc-n">01</span>
+          <p class="sc-t">Tendances cross-visites</p>
+          <p class="sc-d">Analyse automatique des patterns sur toutes vos visites : objections récurrentes, besoins émergents.</p>
+          <span class="sc-tag">IA · Mistral Large</span>
+        </div>
+        <div class="sc">
+          <span class="sc-n">02</span>
+          <p class="sc-t">Opportunités détectées</p>
+          <p class="sc-d">Signaux d'achat et fenêtres de re-contact identifiés automatiquement pour maximiser la conversion.</p>
+        </div>
+        <div class="sc">
+          <span class="sc-n">03</span>
+          <p class="sc-t">Risques &amp; alertes</p>
+          <p class="sc-d">Détection des clients à risque de churn, des propositions sans suite, des engagements non tenus.</p>
+        </div>
+        <div class="sc">
+          <span class="sc-n">04</span>
+          <p class="sc-t">Rapport de direction</p>
+          <p class="sc-d">Résumé exécutif complet pour le manager, généré en 1 clic depuis toutes les visites du mois.</p>
+        </div>
+        <div class="sc">
+          <span class="sc-n">05</span>
+          <p class="sc-t">Briefing matinal</p>
+          <p class="sc-d">Chaque matin, un briefing personnalisé : RDV du jour, contexte client, points clés à aborder.</p>
+        </div>
+        <div class="sc ft">
+          <span class="sc-n">06</span>
+          <p class="sc-t">Analyse comparative</p>
+          <p class="sc-d">Comparez les performances d'une semaine à l'autre, d'un secteur à l'autre, entre commerciaux.</p>
+          <span class="sc-tag">Hub · Manager</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 9 — MAX ══ -->
+  <section id="s9" data-split="1" data-screen-label="09 Max">
+    <div class="glow"></div>
+    <div class="si">
+      <div class="left">
+        <div class="max-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          MAX — Assistant IA
+        </div>
+        <h2 class="t60 au" style="--ad:80ms">Votre copilote<br>commercial IA</h2>
+        <p class="t28">Max connaît l'ensemble de vos comptes-rendus, vos clients, vos tendances — et répond à vos questions en temps réel, avec des citations cliquables vers les rapports sources.</p>
+        <div class="mf">
+          <div class="mfi"><div class="ic ic-g">✓</div><span>Streaming temps réel — réponse en &lt; 3 secondes</span></div>
+          <div class="mfi"><div class="ic ic-g">✓</div><span>Accès à tout l'historique de vos visites</span></div>
+          <div class="mfi"><div class="ic ic-g">✓</div><span>Citations cliquables vers les rapports sources</span></div>
+          <div class="mfi"><div class="ic ic-g">✓</div><span>Actions intelligentes suggérées en sortie</span></div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="cb cu">
+          <p class="cl">Commercial</p>
+          <p>Quels clients ont parlé de problèmes de suivi terrain ce mois-ci ?</p>
+        </div>
+        <div class="cb cm">
+          <p class="cl">✦ MAX</p>
+          <p>3 clients ont mentionné ce point : <strong>Agrifood SAS</strong> (12/04), <strong>Distrib Plus</strong> (14/04) et <strong>BioRetail</strong> (22/04). Les 3 citent un manque de visibilité post-visite comme frein décisionnel principal.</p>
+        </div>
+        <div class="cb cu">
+          <p class="cl">Commercial</p>
+          <p>Prépare un argumentaire pour relancer BioRetail demain.</p>
+        </div>
+        <div class="cb cm">
+          <p class="cl">✦ MAX</p>
+          <p>Sur la base de vos 3 échanges avec BioRetail, voici les 4 points clés à aborder et les objections anticipées…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 10 — HUB MANAGER ══ -->
+  <section id="s10" data-screen-label="10 Hub Manager">
+    <div class="si">
+      <p class="eyebrow au" style="--ad:0ms">Hub Manager</p>
+      <h2 class="t64 au" style="--ad:80ms;margin-bottom:44px">Pilotez votre équipe.<br><span class="green">Sans CRM.</span></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;flex:1;align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:28px;">
+          <p class="t28">Reedly Hub est un véritable outil de management terrain — complet, autonome, opérationnel dès le premier jour, sans dépendre d'un CRM externe.</p>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="fitem"><div class="ic ic-g">✓</div><span>Vision consolidée de toutes les visites de l'équipe</span></div>
+            <div class="fitem"><div class="ic ic-g">✓</div><span>Rapports de direction générés en 1 clic</span></div>
+            <div class="fitem"><div class="ic ic-g">✓</div><span>Analyse comparative entre commerciaux</span></div>
+            <div class="fitem"><div class="ic ic-g">✓</div><span>Détection des opportunités et risques cross-équipe</span></div>
+            <div class="fitem"><div class="ic ic-g">✓</div><span>Alertes proactives sur les comptes à risque</span></div>
+            <div class="fitem"><div class="ic ic-g">✓</div><span>✦ Max disponible pour le manager — posez vos questions sur toute l'équipe</span></div>
+          </div>
+          <div style="background:var(--g-muted);border:1px solid var(--g-border);border-radius:14px;padding:24px 28px;margin-top:4px;">
+            <p style="font-size:28px;font-weight:700;color:var(--g-light);margin-bottom:8px;">CRM déjà en place ?</p>
+            <p style="font-size:26px;color:var(--muted);line-height:1.5;">On s'y connecte. Reedly Hub devient alors la couche IA de votre CRM existant — les données y remontent automatiquement.</p>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px 32px;">
+            <p style="font-size:24px;font-weight:700;color:var(--dim);font-family:'Geist Mono',monospace;letter-spacing:.06em;margin-bottom:20px;">TABLEAU DE BORD — SEMAINE 17</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px;">
+              <div style="background:var(--bg3);border-radius:12px;padding:20px;text-align:center;">
+                <p style="font-size:44px;font-weight:900;color:var(--g-bright);letter-spacing:-.03em;">47</p>
+                <p style="font-size:24px;color:var(--dim);">visites</p>
+              </div>
+              <div style="background:var(--bg3);border-radius:12px;padding:20px;text-align:center;">
+                <p style="font-size:44px;font-weight:900;color:var(--text);letter-spacing:-.03em;">8</p>
+                <p style="font-size:24px;color:var(--dim);">commerciaux</p>
+              </div>
+              <div style="background:var(--g-muted);border:1px solid var(--g-border);border-radius:12px;padding:20px;text-align:center;">
+                <p style="font-size:44px;font-weight:900;color:var(--g-bright);letter-spacing:-.03em;">12</p>
+                <p style="font-size:24px;color:var(--dim);">opportunités</p>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--bg3);border-radius:10px;">
+                <span style="font-size:24px;color:var(--text);">Martin D.</span>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <span style="font-size:24px;color:var(--muted);">8 visites</span>
+                  <span style="font-size:24px;font-weight:700;color:var(--g-bright);background:var(--g-muted);padding:4px 14px;border-radius:100px;">+3 opportunités</span>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--bg3);border-radius:10px;">
+                <span style="font-size:24px;color:var(--text);">Sophie L.</span>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <span style="font-size:24px;color:var(--muted);">6 visites</span>
+                  <span style="font-size:24px;font-weight:700;color:var(--amber);background:rgba(245,158,11,.1);padding:4px 14px;border-radius:100px;">2 relances dues</span>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--bg3);border-radius:10px;">
+                <span style="font-size:24px;color:var(--text);">Karim B.</span>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <span style="font-size:24px;color:var(--muted);">5 visites</span>
+                  <span style="font-size:24px;font-weight:700;color:var(--g-bright);background:var(--g-muted);padding:4px 14px;border-radius:100px;">+2 opportunités</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 11 — CRM ══ -->
+  <section id="s11" data-screen-label="11 CRM">
+    <div class="si">
+      <p class="eyebrow au" style="--ad:0ms">Intégration</p>
+      <h2 class="t64 au" style="--ad:80ms;margin-bottom:44px">Compatible avec votre CRM existant</h2>
+      <div class="crm-layout">
+        <div class="crm-pts">
+          <div class="cp"><div class="ic ic-g">✓</div><span>Reedly s'intègre à <strong style="color:var(--text)">n'importe quel CRM</strong> — Salesforce, HubSpot, Pipedrive, Odoo, et plus encore.</span></div>
+          <div class="cp"><div class="ic ic-g">✓</div><span>Chaque compte-rendu est <strong style="color:var(--text)">automatiquement poussé</strong> dans la fiche client CRM.</span></div>
+          <div class="cp"><div class="ic ic-g">✓</div><span>Plus de double saisie. <strong style="color:var(--text)">Zéro friction</strong> pour le commercial terrain.</span></div>
+          <div class="highlight-box">
+            <p class="t26" style="color:var(--g-light); font-weight:700; margin-bottom:8px;">Intégration sur mesure</p>
+            <p class="t26" style="color:var(--muted)">Pas encore connecté à votre CRM ? On l'étudie ensemble. Chaque intégration est possible — il suffit qu'on en parle.</p>
+          </div>
+        </div>
+        <div>
+          <div class="crm-flow">
+            <div class="cn" style="display:flex;align-items:center;gap:14px;justify-content:center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+              Visite enregistrée
+            </div>
+            <div class="ca">↓</div>
+            <div class="cn ctr">Reedly IA</div>
+            <div class="ca">↓</div>
+            <div class="cn-grid">
+              <div class="cn-small">Compte-rendu structuré</div>
+              <div class="cn-small">CRM mis à jour</div>
+              <div class="cn-small">Synthèse générée</div>
+              <div class="cn-small">✦ Max informé</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 12 — DEMO ══ -->
+  <section id="sdemo" data-screen-label="12 Demo">
+    <div class="glow-demo g1"></div>
+    <div class="glow-demo g2"></div>
+    <div class="demo-inner">
+      <div class="au" style="--ad:0ms">
+        <div class="demo-live-badge">
+          <div class="demo-live-dot"></div>
+          Démonstration live
+        </div>
+      </div>
+      <h2 class="demo-headline au" style="--ad:80ms">Reedly en conditions réelles</h2>
+      <div class="demo-grid">
+        <div class="demo-card featured">
+          <span class="dc-num">01</span>
+          <p class="dc-title">App mobile</p>
+          <p class="dc-desc">Enregistrement d'une visite terrain, génération du compte-rendu et consultation du rapport structuré.</p>
+          <div class="dc-items">
+            <div class="dc-item"><div class="ic ic-g">✓</div>Lancer un enregistrement</div>
+            <div class="dc-item"><div class="ic ic-g">✓</div>Générer le compte-rendu</div>
+            <div class="dc-item"><div class="ic ic-g">✓</div>Consulter le rapport</div>
+          </div>
+        </div>
+        <div class="demo-card featured">
+          <span class="dc-num">02</span>
+          <p class="dc-title">Hub Manager</p>
+          <p class="dc-desc">Vision consolidée de toute l'équipe, synthèse stratégique, rapport de direction en 1 clic.</p>
+          <div class="dc-items">
+            <div class="dc-item"><div class="ic ic-g">✓</div>Tableau de bord équipe</div>
+            <div class="dc-item"><div class="ic ic-g">✓</div>Générer une synthèse</div>
+            <div class="dc-item"><div class="ic ic-g">✓</div>Rapport de direction</div>
+          </div>
+        </div>
+        <div class="demo-card featured">
+          <span class="dc-num">03</span>
+          <p class="dc-title">✦ Max</p>
+          <p class="dc-desc">Poser une question à Max sur l'historique des visites — réponse en temps réel avec citations sources.</p>
+          <div class="dc-items">
+            <div class="dc-item"><div class="ic ic-g">✓</div>Question sur un client</div>
+            <div class="dc-item"><div class="ic ic-g">✓</div>Analyse cross-visites</div>
+            <div class="dc-item"><div class="ic ic-g">✓</div>Suggestions d'actions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 13 — TARIFS ══ -->
+  <section id="s12" data-screen-label="13 Tarifs">
+    <div class="si">
+      <div class="hdr">
+        <p class="eyebrow au" style="--ad:0ms">Tarifs</p>
+        <h2 class="t64 au" style="--ad:80ms">Offre Business Entreprise</h2>
+      </div>
+      <div class="pricing-layout">
+        <div class="price-hero">
+          <p class="plan-name">Business Entreprise</p>
+          <div>
+            <div class="price-row">
+              <span class="pnum">69 €</span>
+            </div>
+            <p class="punit" style="margin-top:4px;">par utilisateur / mois — facturation mensuelle</p>
+          </div>
+          <p class="price-note">À partir de <strong style="color:var(--text)">5 utilisateurs</strong>.<br>Engagement annuel disponible :</p>
+          <div class="annual-row">
+            <span class="ann-num">59 € / user / mois</span>
+            <span class="ann-label">— facturé annuellement</span>
+          </div>
+          <p class="price-note" style="margin-top:auto;">Essai gratuit 7 jours</p>
+        </div>
+        <div class="features-col">
+          <p class="feat-section-label">Enregistrement &amp; transcription</p>
+          <div class="feat-grid">
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Enregistrements jusqu'à 2h / visite</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Transcription haute précision (FR)</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Diarisation commercial / client</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Fonctionne hors connexion</span></div>
+          </div>
+          <p class="feat-section-label">Rapports &amp; synthèses IA</p>
+          <div class="feat-grid">
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Comptes-rendus structurés par secteur</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Synthèses stratégiques IA</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Briefing matinal personnalisé</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Rapport de direction 1 clic</span></div>
+          </div>
+          <p class="feat-section-label">✦ Max &amp; Hub manager</p>
+          <div class="feat-grid">
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Max — assistant IA temps réel</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Hub manager — vision équipe</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Analyse comparative cross-commerciaux</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Intégration CRM personnalisée</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>Actions &amp; relances suggérées</span></div>
+            <div class="fi"><div class="ic ic-g" style="width:28px;height:28px;">✓</div><span>450 crédits IA / user / mois</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 12 — CTA ══ -->
+  <section id="s13" data-screen-label="14 CTA">
+    <div class="glow"></div>
+    <div class="si">
+      <div class="logo-row as" style="--ad:0ms">
+        <img src="logo2.png" alt="Reedly">
+        <span>Reedly</span>
+      </div>
+      <p class="cta-h au" style="--ad:100ms">Prêt à récupérer<br><em>20 heures par mois ?</em></p>
+      <p class="cta-s au" style="--ad:220ms">Essai gratuit 7 jours.</p>
+      <div class="contact-box au" style="--ad:340ms">
+        <div class="contact-item">
+          <span class="ci-label">Site</span>
+          <span class="ci-value">reedly.ia</span>
+        </div>
+        <div class="sep"></div>
+        <div class="contact-item">
+          <span class="ci-label">Contact</span>
+          <span class="ci-value">contact@reedly.ia</span>
+        </div>
+      </div>
+      <div class="trial-pill au" style="--ad:460ms">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Sans engagement
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script>
+(function() {
+  const STAGGER_BASE = 200;
+  const STAGGER_STEP = 65;
+  const STAGGER_SELS = [
+    '.pain-card','.sc','.tool-row','.ci','.fitem','.dc-item','.demo-card',
+    '.mfi','.cp','.fi','.rc','.cb','.stat','.contact-item'
+  ];
+
+  function initStagger(slide) {
+    STAGGER_SELS.forEach(sel => {
+      slide.querySelectorAll(sel).forEach((el, i) => {
+        el.style.setProperty('--sd', (STAGGER_BASE + i * STAGGER_STEP) + 'ms');
+      });
+    });
+    // Split slides: left animates from left, right from right
+    if (slide.dataset.split) {
+      const left  = slide.querySelector('.left');
+      const right = slide.querySelector('.right');
+      if (left)  { left.classList.add('al');  left.style.setProperty('--ad','100ms'); }
+      if (right) { right.classList.add('ar'); right.style.setProperty('--ad','180ms'); }
+    }
+    // Hub dashboard rows: stagger
+    slide.querySelectorAll('[style*="background:var(--bg3);border-radius:10px"]').forEach((el, i) => {
+      el.style.setProperty('--sd', (300 + i * 80) + 'ms');
+      el.classList.add('crm-row');
+    });
+    // Hub stat numbers
+    slide.querySelectorAll('[style*="font-size:44px;font-weight:900"]').forEach((el, i) => {
+      el.classList.add('as');
+      el.style.setProperty('--ad', (260 + i * 80) + 'ms');
+    });
+  }
+
+  function play(slide) {
+    slide.classList.remove('anim-in');
+    requestAnimationFrame(() => requestAnimationFrame(() => slide.classList.add('anim-in')));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const stage = document.querySelector('deck-stage');
+    stage.querySelectorAll('section').forEach(initStagger);
+
+    stage.addEventListener('slidechange', e => {
+      const prev = e.detail.previousSlide;
+      if (prev) prev.classList.remove('anim-in');
+      play(e.detail.slide);
+    });
+
+    // Play the slide that was already active before our listener registered
+    const curr = stage.querySelector('[data-deck-active]');
+    if (curr) play(curr);
+  });
+})();
+</script>
+
+</body>
+</html>
