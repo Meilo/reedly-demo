@@ -1492,6 +1492,877 @@
         font-size: 24px;
         color: var(--text);
       }
+
+      /* ── Slide MOBILE DEMO (vidéos app mobile) ── */
+      :is(#smobiledemo, #smaxdemo) {
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 20% 0%,
+            rgba(34, 197, 94, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 70% 60% at 100% 100%,
+            rgba(34, 197, 94, 0.08) 0%,
+            transparent 60%
+          ),
+          linear-gradient(200deg, #0b1220 0%, #0d1f15 60%, #0b1220 100%);
+      }
+      :is(#smobiledemo, #smaxdemo) .md-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(160px);
+        pointer-events: none;
+        z-index: 0;
+        background: var(--green);
+      }
+      :is(#smobiledemo, #smaxdemo) .md-glow.g1 {
+        width: 720px;
+        height: 720px;
+        top: -260px;
+        right: -120px;
+        opacity: 0.07;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-glow.g2 {
+        width: 460px;
+        height: 460px;
+        bottom: -180px;
+        left: -120px;
+        opacity: 0.06;
+      }
+      :is(#smobiledemo, #smaxdemo) .mobiledemo-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 72px 100px 64px;
+        position: relative;
+        z-index: 1;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 28px;
+        gap: 60px;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-head-left {
+        flex: 1;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-sub {
+        font-size: 24px;
+        color: var(--muted);
+        max-width: 460px;
+        text-align: right;
+        line-height: 1.5;
+        flex-shrink: 0;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-sub strong {
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      :is(#smobiledemo, #smaxdemo) .md-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        flex: 1;
+        align-items: stretch;
+        min-height: 0;
+        padding: 0 80px;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card:hover {
+        transform: translateY(-8px);
+      }
+
+      /* iPhone mockup */
+      :is(#smobiledemo, #smaxdemo) .phone {
+        position: relative;
+        flex: 1;
+        min-height: 0;
+        aspect-ratio: 9 / 19.5;
+        background: linear-gradient(150deg, #1a1f2e 0%, #0a0d14 100%);
+        border-radius: 56px;
+        padding: 14px;
+        box-shadow:
+          0 0 0 2px #2b3142,
+          0 0 0 3px rgba(255, 255, 255, 0.05),
+          0 50px 100px -20px rgba(0, 0, 0, 0.7),
+          0 30px 60px -30px rgba(34, 197, 94, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        transition: box-shadow 0.5s ease;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card:hover .phone {
+        box-shadow:
+          0 0 0 2px rgba(34, 197, 94, 0.55),
+          0 0 0 3px rgba(34, 197, 94, 0.15),
+          0 60px 120px -20px rgba(0, 0, 0, 0.75),
+          0 30px 80px -20px rgba(34, 197, 94, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      }
+      :is(#smobiledemo, #smaxdemo) .phone-screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 44px;
+        overflow: hidden;
+        background: #000;
+      }
+      :is(#smobiledemo, #smaxdemo) .phone-screen video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+      }
+      /* Side buttons */
+      :is(#smobiledemo, #smaxdemo) .phone-btn {
+        position: absolute;
+        background: linear-gradient(180deg, #2a2f3e, #1a1f2e);
+        border-radius: 2px;
+      }
+      :is(#smobiledemo, #smaxdemo) .phone-btn.power {
+        right: -3px;
+        top: 28%;
+        width: 4px;
+        height: 86px;
+      }
+      :is(#smobiledemo, #smaxdemo) .phone-btn.vol-up {
+        left: -3px;
+        top: 22%;
+        width: 4px;
+        height: 56px;
+      }
+      :is(#smobiledemo, #smaxdemo) .phone-btn.vol-dn {
+        left: -3px;
+        top: 32%;
+        width: 4px;
+        height: 56px;
+        margin-top: 60px;
+      }
+      :is(#smobiledemo, #smaxdemo) .phone-btn.silent {
+        left: -3px;
+        top: 14%;
+        width: 4px;
+        height: 28px;
+      }
+
+      /* Scrim + play button */
+      :is(#smobiledemo, #smaxdemo) .phone-scrim {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 60% 60% at 50% 60%,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.55) 100%
+        );
+        opacity: 0.4;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        z-index: 3;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card:hover .phone-scrim {
+        opacity: 0.15;
+      }
+      :is(#smobiledemo, #smaxdemo) .phone-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.92);
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        z-index: 5;
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4);
+      }
+      :is(#smobiledemo, #smaxdemo) .phone-play svg {
+        margin-left: 4px;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card:hover .phone-play {
+        transform: translate(-50%, -50%) scale(1.06);
+        background: rgba(34, 197, 94, 0.92);
+        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow:
+          0 22px 56px rgba(0, 0, 0, 0.5),
+          0 0 0 8px rgba(34, 197, 94, 0.2);
+      }
+
+      /* Card meta (below phone) */
+      :is(#smobiledemo, #smaxdemo) .md-meta {
+        margin-top: 32px;
+        text-align: center;
+        max-width: 460px;
+        position: relative;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-num {
+        font-family: "Geist Mono", monospace;
+        font-size: 14px;
+        color: var(--g-bright);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-num::before,
+      :is(#smobiledemo, #smaxdemo) .md-num::after {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: rgba(34, 197, 94, 0.35);
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card-title {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin-bottom: 10px;
+        color: var(--text);
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card-title .accent {
+        color: var(--g-bright);
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card-desc {
+        font-size: 18px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 16px;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Geist Mono", monospace;
+        font-size: 13px;
+        color: var(--g-bright);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 600;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card:hover .md-card-cta {
+        opacity: 1;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card-cta svg {
+        transition: transform 0.3s ease;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-card:hover .md-card-cta svg {
+        transform: translateX(3px);
+      }
+
+      :is(#smobiledemo, #smaxdemo) .md-foot {
+        margin-top: 24px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: "Geist Mono", monospace;
+        font-size: 14px;
+        color: var(--dim);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      :is(#smobiledemo, #smaxdemo) .md-foot::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* Stagger entrance */
+      :is(#smobiledemo, #smaxdemo) .md-card.au {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+          transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      :is(#smobiledemo, #smaxdemo).anim-in .md-card.au {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Slide MAX DEMO (mobile + web) ── */
+      #smaxdemo .md-grid {
+        align-items: center;
+        gap: 72px;
+      }
+      #smaxdemo .md-card {
+        height: 100%;
+        justify-content: center;
+      }
+      #smaxdemo .md-card.is-web {
+        align-self: center;
+      }
+
+      /* Browser mockup */
+      #smaxdemo .browser {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        background: linear-gradient(150deg, #1a1f2e 0%, #0a0d14 100%);
+        border-radius: 18px;
+        padding: 10px;
+        box-shadow:
+          0 0 0 1.5px #2b3142,
+          0 0 0 2.5px rgba(255, 255, 255, 0.05),
+          0 50px 100px -20px rgba(0, 0, 0, 0.7),
+          0 30px 60px -30px rgba(34, 197, 94, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        transition: box-shadow 0.5s ease;
+      }
+      #smaxdemo .md-card:hover .browser {
+        box-shadow:
+          0 0 0 1.5px rgba(34, 197, 94, 0.55),
+          0 0 0 2.5px rgba(34, 197, 94, 0.15),
+          0 60px 120px -20px rgba(0, 0, 0, 0.75),
+          0 30px 80px -20px rgba(34, 197, 94, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      }
+      #smaxdemo .browser-chrome {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 14px 12px;
+      }
+      #smaxdemo .browser-chrome .hd-dots {
+        display: flex;
+        gap: 7px;
+      }
+      #smaxdemo .browser-chrome .hd-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+      #smaxdemo .browser-chrome .hd-dot.r {
+        background: #ff5f57;
+      }
+      #smaxdemo .browser-chrome .hd-dot.y {
+        background: #febc2e;
+      }
+      #smaxdemo .browser-chrome .hd-dot.g {
+        background: #28c840;
+      }
+      #smaxdemo .browser-url {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 7px;
+        padding: 5px 12px;
+        font-family: "Geist Mono", monospace;
+        font-size: 14px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      #smaxdemo .browser-url svg {
+        flex-shrink: 0;
+        color: var(--g-bright);
+      }
+      #smaxdemo .browser-url-path {
+        color: var(--text);
+      }
+      #smaxdemo .browser-screen {
+        position: relative;
+        width: 100%;
+        height: calc(100% - 46px);
+        border-radius: 10px;
+        overflow: hidden;
+        background: #000;
+      }
+      #smaxdemo .browser-screen video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left center;
+        display: block;
+        filter: saturate(1.05);
+      }
+
+      /* ── Slide HUB DEMO (vidéos cliquables) ── */
+      :is(#shubdemo, #smaxdemo) {
+        background:
+          radial-gradient(
+            ellipse 90% 60% at 80% 0%,
+            rgba(34, 197, 94, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 70% 60% at 0% 100%,
+            rgba(34, 197, 94, 0.08) 0%,
+            transparent 60%
+          ),
+          linear-gradient(160deg, #0b1220 0%, #0d1f15 60%, #0b1220 100%);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(160px);
+        pointer-events: none;
+        z-index: 0;
+        background: var(--green);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-glow.g1 {
+        width: 720px;
+        height: 720px;
+        top: -260px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.07;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-glow.g2 {
+        width: 460px;
+        height: 460px;
+        bottom: -200px;
+        right: -120px;
+        opacity: 0.06;
+      }
+      :is(#shubdemo, #smaxdemo) .hubdemo-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 72px 100px 64px;
+        position: relative;
+        z-index: 1;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 44px;
+        gap: 60px;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-head-left {
+        flex: 1;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-sub {
+        font-size: 24px;
+        color: var(--muted);
+        max-width: 460px;
+        text-align: right;
+        line-height: 1.5;
+        flex-shrink: 0;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-sub strong {
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      :is(#shubdemo, #smaxdemo) .hd-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 32px;
+        flex: 1;
+        align-items: stretch;
+        min-height: 0;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card {
+        position: relative;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        transition:
+          transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 0.45s ease,
+          box-shadow 0.45s ease;
+        will-change: transform;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        pointer-events: none;
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+        transition: box-shadow 0.45s ease;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(34, 197, 94, 0.45);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card:hover::after {
+        box-shadow:
+          0 32px 80px -20px rgba(34, 197, 94, 0.35),
+          0 0 0 1px rgba(34, 197, 94, 0.2);
+      }
+
+      /* Browser chrome */
+      :is(#shubdemo, #smaxdemo) .hd-chrome {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 18px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0)
+        );
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-dots {
+        display: flex;
+        gap: 7px;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-dot.r {
+        background: #ff5f57;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-dot.y {
+        background: #febc2e;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-dot.g {
+        background: #28c840;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-url {
+        flex: 1;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 14px;
+        font-family: "Geist Mono", monospace;
+        font-size: 16px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-url svg {
+        flex-shrink: 0;
+        color: var(--g-bright);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-url-path {
+        color: var(--text);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-tag {
+        font-family: "Geist Mono", monospace;
+        font-size: 13px;
+        color: var(--dim);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* Video well */
+      :is(#shubdemo, #smaxdemo) .hd-video-well {
+        position: relative;
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+        background: #000;
+        overflow: hidden;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-video-well video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left center;
+        display: block;
+        filter: saturate(1.05);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-scrim {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 70% 70% at 50% 60%,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.55) 100%
+        );
+        opacity: 0.55;
+        transition: opacity 0.45s ease;
+        pointer-events: none;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card:hover .hd-scrim {
+        opacity: 0.25;
+      }
+
+      /* Play button */
+      :is(#shubdemo, #smaxdemo) .hd-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.92);
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        box-shadow:
+          0 18px 48px rgba(0, 0, 0, 0.4),
+          0 0 0 0 rgba(34, 197, 94, 0);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-play svg {
+        margin-left: 4px;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card:hover .hd-play {
+        transform: translate(-50%, -50%) scale(1.05);
+        background: rgba(34, 197, 94, 0.92);
+        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow:
+          0 22px 56px rgba(0, 0, 0, 0.5),
+          0 0 0 8px rgba(34, 197, 94, 0.18);
+      }
+
+      /* Card meta footer */
+      :is(#shubdemo, #smaxdemo) .hd-meta {
+        padding: 26px 28px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex-shrink: 0;
+        position: relative;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-num {
+        position: absolute;
+        top: 26px;
+        right: 28px;
+        font-family: "Geist Mono", monospace;
+        font-size: 14px;
+        color: var(--dim);
+        letter-spacing: 0.1em;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card-title {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: -0.015em;
+        line-height: 1.15;
+        color: var(--text);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card-title .accent {
+        color: var(--g-bright);
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card-desc {
+        font-size: 17px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 6px;
+        font-family: "Geist Mono", monospace;
+        font-size: 13px;
+        color: var(--g-bright);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 600;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card:hover .hd-card-cta {
+        opacity: 1;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card-cta svg {
+        transition: transform 0.3s ease;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-card:hover .hd-card-cta svg {
+        transform: translateX(3px);
+      }
+
+      /* Footnote */
+      :is(#shubdemo, #smaxdemo) .hd-foot {
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: "Geist Mono", monospace;
+        font-size: 14px;
+        color: var(--dim);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      :is(#shubdemo, #smaxdemo) .hd-foot::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* Stagger entrance */
+      :is(#shubdemo, #smaxdemo) .hd-card.au {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+          transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      :is(#shubdemo, #smaxdemo).anim-in .hd-card.au {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Modal vidéo ── */
+      .vmodal {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 56px;
+        background: rgba(5, 10, 18, 0.88);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.4s ease,
+          visibility 0s linear 0.4s;
+      }
+      .vmodal.open {
+        opacity: 1;
+        visibility: visible;
+        transition:
+          opacity 0.4s ease,
+          visibility 0s linear 0s;
+      }
+      .vmodal-frame {
+        position: relative;
+        max-width: 1280px;
+        width: 100%;
+        max-height: 100%;
+        background: #000;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        box-shadow:
+          0 60px 140px rgba(0, 0, 0, 0.8),
+          0 0 0 1px rgba(255, 255, 255, 0.04),
+          0 0 120px rgba(34, 197, 94, 0.18);
+        transform: scale(0.94) translateY(20px);
+        transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1);
+      }
+      .vmodal.open .vmodal-frame {
+        transform: scale(1) translateY(0);
+      }
+      .vmodal-chrome {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 20px;
+        background: #0d1424;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .vmodal-chrome .hd-dots {
+        display: flex;
+        gap: 7px;
+      }
+      .vmodal-chrome .hd-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+      .vmodal-chrome .hd-dot.r {
+        background: #ff5f57;
+      }
+      .vmodal-chrome .hd-dot.y {
+        background: #febc2e;
+      }
+      .vmodal-chrome .hd-dot.g {
+        background: #28c840;
+      }
+      .vmodal-title {
+        font-family: "Geist Mono", monospace;
+        font-size: 14px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        flex: 1;
+        text-align: center;
+      }
+      .vmodal-title strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .vmodal-close {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text);
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .vmodal-close:hover {
+        background: rgba(239, 68, 68, 0.18);
+        border-color: rgba(239, 68, 68, 0.5);
+        color: #fff;
+      }
+      .vmodal-video {
+        width: 100%;
+        max-height: calc(100vh - 200px);
+        display: block;
+        background: #000;
+      }
+      .vmodal-hint {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Geist Mono", monospace;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+      .vmodal-hint kbd {
+        font-family: "Geist Mono", monospace;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 5px;
+        padding: 2px 8px;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0 2px;
+      }
     </style>
   </head>
   <body>
@@ -2648,8 +3519,567 @@
         </div>
       </section>
 
-      <!-- ══ SLIDE 13 — TARIFS ══ -->
-      <section id="s12" data-screen-label="13 Tarifs">
+      <!-- ══ SLIDE 13 — MOBILE DEMO (vidéos app) ══ -->
+      <section id="smobiledemo" data-screen-label="13 App Démo">
+        <div class="md-glow g1"></div>
+        <div class="md-glow g2"></div>
+        <div class="mobiledemo-inner">
+          <div class="md-head">
+            <div class="md-head-left">
+              <p class="eyebrow au" style="--ad: 0ms">App Mobile</p>
+              <h2 class="t64 au" style="--ad: 80ms; margin-bottom: 0">
+                Le terrain dans
+                <span class="green">la poche</span>.
+              </h2>
+            </div>
+            <p class="md-sub au" style="--ad: 160ms">
+              Avant la visite, pendant la visite. <strong>Reedly</strong>
+              prépare, écoute, structure — depuis l'app mobile du commercial.
+              Cliquez sur une vignette pour lancer la démo.
+            </p>
+          </div>
+
+          <div class="md-grid">
+            <article
+              class="md-card au"
+              data-video="meeting-prep-mobile.MP4"
+              data-title="Préparation du rendez-vous"
+              style="--ad: 240ms"
+            >
+              <div class="phone">
+                <span class="phone-btn silent"></span>
+                <span class="phone-btn vol-up"></span>
+                <span class="phone-btn vol-dn"></span>
+                <span class="phone-btn power"></span>
+                <div class="phone-screen">
+                  <video
+                    src="meeting-prep-mobile.MP4"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                  ></video>
+                  <div class="phone-scrim"></div>
+                  <div class="phone-play" aria-hidden="true">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="md-meta">
+                <span class="md-num">01 / 02 · Avant</span>
+                <p class="md-card-title">
+                  Préparation du <span class="accent">rendez-vous</span>
+                </p>
+                <p class="md-card-desc">
+                  Brief client, dernières interactions, points d'attention —
+                  Reedly synthétise le contexte avant que le commercial entre
+                  dans le bureau.
+                </p>
+                <span class="md-card-cta">
+                  Voir la démo
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+
+            <article
+              class="md-card au"
+              data-video="meeting-mobile.mov"
+              data-title="Rendez-vous & compte-rendu"
+              style="--ad: 320ms"
+            >
+              <div class="phone">
+                <span class="phone-btn silent"></span>
+                <span class="phone-btn vol-up"></span>
+                <span class="phone-btn vol-dn"></span>
+                <span class="phone-btn power"></span>
+                <div class="phone-screen">
+                  <video
+                    src="meeting-mobile.mov"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                  ></video>
+                  <div class="phone-scrim"></div>
+                  <div class="phone-play" aria-hidden="true">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="md-meta">
+                <span class="md-num">02 / 02 · Pendant &amp; après</span>
+                <p class="md-card-title">
+                  Visite &amp; <span class="accent">compte-rendu</span>
+                </p>
+                <p class="md-card-desc">
+                  Enregistrement en un tap, transcription en direct, génération
+                  automatique du compte-rendu structuré dès la sortie de la
+                  visite.
+                </p>
+                <span class="md-card-cta">
+                  Voir la démo
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ SLIDE 14 — HUB DEMO (vidéos) ══ -->
+      <section id="shubdemo" data-screen-label="14 Hub Démo">
+        <div class="hd-glow g1"></div>
+        <div class="hd-glow g2"></div>
+        <div class="hubdemo-inner">
+          <div class="hd-head">
+            <div class="hd-head-left">
+              <p class="eyebrow au" style="--ad: 0ms">Hub Manager</p>
+              <h2 class="t64 au" style="--ad: 80ms; margin-bottom: 0">
+                Trois écrans,
+                <span class="green">une vue 360°</span>
+                sur le terrain.
+              </h2>
+            </div>
+            <p class="hd-sub au" style="--ad: 160ms">
+              Le <strong>Hub web</strong> consolide en temps réel ce que les
+              équipes terrain capturent. Cliquez sur une vignette pour lancer la
+              démo.
+            </p>
+          </div>
+
+          <div class="hd-grid">
+            <article
+              class="hd-card au"
+              data-video="dashboard-hub.mov"
+              data-title="Tableau de bord équipe"
+              style="--ad: 240ms"
+            >
+              <div class="hd-chrome">
+                <div class="hd-dots">
+                  <span class="hd-dot r"></span>
+                  <span class="hd-dot y"></span>
+                  <span class="hd-dot g"></span>
+                </div>
+                <div class="hd-url">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  hub.reedly.ai<span class="hd-url-path">/dashboard</span>
+                </div>
+                <span class="hd-tag">01</span>
+              </div>
+              <div class="hd-video-well">
+                <video
+                  src="dashboard-hub.mov"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                ></video>
+                <div class="hd-scrim"></div>
+                <div class="hd-play" aria-hidden="true">
+                  <svg
+                    width="34"
+                    height="34"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="hd-meta">
+                <span class="hd-num">01 / 03</span>
+                <p class="hd-card-title">
+                  Tableau de bord <span class="accent">équipe</span>
+                </p>
+                <p class="hd-card-desc">
+                  Vue temps réel : visites du jour, équipe active, signaux à
+                  surveiller.
+                </p>
+                <span class="hd-card-cta">
+                  Voir la démo
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+
+            <article
+              class="hd-card au"
+              data-video="reports-hub.mov"
+              data-title="Liste des compte-rendus"
+              style="--ad: 320ms"
+            >
+              <div class="hd-chrome">
+                <div class="hd-dots">
+                  <span class="hd-dot r"></span>
+                  <span class="hd-dot y"></span>
+                  <span class="hd-dot g"></span>
+                </div>
+                <div class="hd-url">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  hub.reedly.ai<span class="hd-url-path">/reports</span>
+                </div>
+                <span class="hd-tag">02</span>
+              </div>
+              <div class="hd-video-well">
+                <video
+                  src="reports-hub.mov"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                ></video>
+                <div class="hd-scrim"></div>
+                <div class="hd-play" aria-hidden="true">
+                  <svg
+                    width="34"
+                    height="34"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="hd-meta">
+                <span class="hd-num">02 / 03</span>
+                <p class="hd-card-title">
+                  Liste des <span class="accent">compte-rendus</span>
+                </p>
+                <p class="hd-card-desc">
+                  Toutes les visites structurées, filtrables par client, secteur
+                  ou commercial.
+                </p>
+                <span class="hd-card-cta">
+                  Voir la démo
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+
+            <article
+              class="hd-card au"
+              data-video="actions-hub.mov"
+              data-title="Actions en cours"
+              style="--ad: 400ms"
+            >
+              <div class="hd-chrome">
+                <div class="hd-dots">
+                  <span class="hd-dot r"></span>
+                  <span class="hd-dot y"></span>
+                  <span class="hd-dot g"></span>
+                </div>
+                <div class="hd-url">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  hub.reedly.ai<span class="hd-url-path">/actions</span>
+                </div>
+                <span class="hd-tag">03</span>
+              </div>
+              <div class="hd-video-well">
+                <video
+                  src="actions-hub.mov"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                ></video>
+                <div class="hd-scrim"></div>
+                <div class="hd-play" aria-hidden="true">
+                  <svg
+                    width="34"
+                    height="34"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="hd-meta">
+                <span class="hd-num">03 / 03</span>
+                <p class="hd-card-title">
+                  Actions <span class="accent">en cours</span>
+                </p>
+                <p class="hd-card-desc">
+                  Tâches détectées automatiquement par Reedly, avec échéance et
+                  responsable.
+                </p>
+                <span class="hd-card-cta">
+                  Voir la démo
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+          </div>
+
+          <div class="hd-foot au" style="--ad: 520ms">
+            Cliquez une vignette pour lancer la démo plein écran
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ SLIDE 15 — MAX DEMO (mobile + web) ══ -->
+      <section id="smaxdemo" data-screen-label="15 Max Démo">
+        <div class="md-glow g1"></div>
+        <div class="md-glow g2"></div>
+        <div class="mobiledemo-inner">
+          <div class="md-head">
+            <div class="md-head-left">
+              <p class="eyebrow au" style="--ad: 0ms">✦ Max</p>
+              <h2 class="t64 au" style="--ad: 80ms; margin-bottom: 0">
+                L'assistant qui
+                <span class="green">connaît</span>
+                vos clients.
+              </h2>
+            </div>
+            <p class="md-sub au" style="--ad: 160ms">
+              Posez une question, <strong>Max</strong> répond en temps réel —
+              avec citations sources tirées de l'historique des visites. Sur le
+              terrain ou au bureau.
+            </p>
+          </div>
+
+          <div class="md-grid">
+            <article
+              class="md-card au"
+              data-video="max-mobile.MP4"
+              data-title="Max — sur l'iPhone"
+              style="--ad: 240ms"
+            >
+              <div class="phone">
+                <span class="phone-btn silent"></span>
+                <span class="phone-btn vol-up"></span>
+                <span class="phone-btn vol-dn"></span>
+                <span class="phone-btn power"></span>
+                <div class="phone-screen">
+                  <video
+                    src="max-mobile.MP4"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                  ></video>
+                  <div class="phone-scrim"></div>
+                  <div class="phone-play" aria-hidden="true">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="md-meta">
+                <span class="md-num">01 / 02 · Sur le terrain</span>
+                <p class="md-card-title">
+                  Max sur <span class="accent">l'app mobile</span>
+                </p>
+                <p class="md-card-desc">
+                  Avant d'entrer chez le client : « Qu'a dit Pierre la dernière
+                  fois ? » — réponse instantanée, sourcée, tap pour ouvrir le
+                  rapport.
+                </p>
+                <span class="md-card-cta">
+                  Voir la démo
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+
+            <article
+              class="md-card is-web au"
+              data-video="max-web.mov"
+              data-title="Max — sur le Hub web"
+              style="--ad: 320ms"
+            >
+              <div class="browser">
+                <div class="browser-chrome">
+                  <div class="hd-dots">
+                    <span class="hd-dot r"></span>
+                    <span class="hd-dot y"></span>
+                    <span class="hd-dot g"></span>
+                  </div>
+                  <div class="browser-url">
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <rect x="3" y="11" width="18" height="11" rx="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    hub.reedly.ai<span class="browser-url-path">/max</span>
+                  </div>
+                </div>
+                <div class="browser-screen">
+                  <video
+                    src="max-web.mov"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                  ></video>
+                  <div class="phone-scrim"></div>
+                  <div class="phone-play" aria-hidden="true">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="md-meta">
+                <span class="md-num">02 / 02 · Au bureau</span>
+                <p class="md-card-title">
+                  Max sur le <span class="accent">Hub web</span>
+                </p>
+                <p class="md-card-desc">
+                  Analyses cross-visites, synthèses par compte, suggestions
+                  d'actions — Max raisonne sur tout l'historique de l'équipe.
+                </p>
+                <span class="md-card-cta">
+                  Voir la démo
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ SLIDE 16 — TARIFS ══ -->
+      <section id="s12" data-screen-label="16 Tarifs">
         <div class="si">
           <div class="hdr">
             <p class="eyebrow au" style="--ad: 0ms">Tarifs</p>
@@ -2753,7 +4183,7 @@
       </section>
 
       <!-- ══ SLIDE 12 — CTA ══ -->
-      <section id="s13" data-screen-label="14 CTA">
+      <section id="s13" data-screen-label="17 CTA">
         <div class="glow"></div>
         <div class="si">
           <div class="logo-row as" style="--ad: 0ms">
@@ -2791,6 +4221,145 @@
         </div>
       </section>
     </deck-stage>
+
+    <!-- ══ Video modal (lightbox pour les vidéos du Hub) ══ -->
+    <div
+      id="vmodal"
+      class="vmodal"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="vmodal-frame" role="document">
+        <div class="vmodal-chrome">
+          <div class="hd-dots">
+            <span class="hd-dot r"></span>
+            <span class="hd-dot y"></span>
+            <span class="hd-dot g"></span>
+          </div>
+          <div class="vmodal-title">
+            hub.reedly.ai · <strong id="vmodal-title-text">Démo</strong>
+          </div>
+          <button
+            class="vmodal-close"
+            type="button"
+            aria-label="Fermer la vidéo"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            >
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <video
+          id="vmodal-video"
+          class="vmodal-video"
+          controls
+          playsinline
+          preload="auto"
+        ></video>
+      </div>
+      <div class="vmodal-hint">
+        <kbd>Esc</kbd> pour fermer · cliquez à l'extérieur
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const modal = document.getElementById("vmodal");
+        const video = document.getElementById("vmodal-video");
+        const titleEl = document.getElementById("vmodal-title-text");
+        const closeBtn = modal.querySelector(".vmodal-close");
+        const frame = modal.querySelector(".vmodal-frame");
+        let lastFocus = null;
+
+        function open(src, title) {
+          lastFocus = document.activeElement;
+          video.src = src;
+          titleEl.textContent = title || "Démo";
+          modal.classList.add("open");
+          modal.setAttribute("aria-hidden", "false");
+          // Defer play until next frame so the transition runs cleanly
+          requestAnimationFrame(() => {
+            video.currentTime = 0;
+            const p = video.play();
+            if (p && typeof p.catch === "function") p.catch(() => {});
+          });
+        }
+
+        function close() {
+          modal.classList.remove("open");
+          modal.setAttribute("aria-hidden", "true");
+          video.pause();
+          // Wait for transition then clear src to free memory
+          setTimeout(() => {
+            video.removeAttribute("src");
+            video.load();
+          }, 420);
+          if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+
+        // Wire up cards (Hub + Mobile demo slides)
+        document.querySelectorAll("[data-video]").forEach((card) => {
+          card.addEventListener("click", () => {
+            open(card.dataset.video, card.dataset.title);
+          });
+          card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              open(card.dataset.video, card.dataset.title);
+            }
+          });
+          card.tabIndex = 0;
+          card.setAttribute("role", "button");
+          card.setAttribute(
+            "aria-label",
+            "Lancer la vidéo : " + card.dataset.title,
+          );
+        });
+
+        closeBtn.addEventListener("click", close);
+        modal.addEventListener("click", (e) => {
+          if (!frame.contains(e.target)) close();
+        });
+
+        // Capture-phase ESC handler so it runs before deck-stage's nav
+        window.addEventListener(
+          "keydown",
+          (e) => {
+            if (!modal.classList.contains("open")) return;
+            if (e.key === "Escape") {
+              e.stopPropagation();
+              close();
+            } else {
+              // While modal is open, swallow deck navigation keys so arrows
+              // don't change slide while watching a video.
+              const navKeys = [
+                "ArrowLeft",
+                "ArrowRight",
+                "ArrowUp",
+                "ArrowDown",
+                "PageUp",
+                "PageDown",
+                " ",
+                "Home",
+                "End",
+              ];
+              if (navKeys.includes(e.key)) e.stopPropagation();
+            }
+          },
+          true,
+        );
+      })();
+    </script>
 
     <script>
       (function () {
