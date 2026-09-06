@@ -913,6 +913,27 @@
         font-weight: 600;
         color: var(--text);
       }
+      /* The deck is presented in a browser, so the site and the addresses
+         are real links. A dim underline hints at that without shouting. */
+      #s9 a.ci-value {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-decoration-color: rgba(148, 163, 184, 0.45);
+        text-underline-offset: 5px;
+        transition:
+          color 0.18s ease,
+          text-decoration-color 0.18s ease;
+      }
+      #s9 a.ci-value:hover,
+      #s9 a.ci-value:focus-visible {
+        color: var(--g-bright);
+        text-decoration-color: var(--g-bright);
+      }
+      #s9 a.ci-value:focus-visible {
+        outline: 2px solid var(--g-border);
+        outline-offset: 6px;
+        border-radius: 4px;
+      }
       #s9 .sep {
         width: 1px;
         background: var(--border);
@@ -1946,14 +1967,24 @@
           <div class="contact-box au" style="--ad: 420ms">
             <div class="contact-item">
               <span class="ci-label" data-en="Website">Site</span>
-              <span class="ci-value">reedly.ai</span>
+              <a
+                class="ci-value"
+                href="https://reedly.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                >reedly.ai</a
+              >
             </div>
             <div class="sep"></div>
             <div class="contact-item">
               <span class="ci-label" data-en="Contact">Contact</span>
-              <span class="ci-value">laura@reedly.ai</span>
-              <span class="ci-value">ludovic@reedly.ai</span>
-              <span class="ci-value">max@reedly.ai</span>
+              <a class="ci-value" href="mailto:laura@reedly.ai"
+                >laura@reedly.ai</a
+              >
+              <a class="ci-value" href="mailto:ludovic@reedly.ai"
+                >ludovic@reedly.ai</a
+              >
+              <a class="ci-value" href="mailto:max@reedly.ai">max@reedly.ai</a>
             </div>
           </div>
           <div class="trial-pill au" style="--ad: 520ms">
